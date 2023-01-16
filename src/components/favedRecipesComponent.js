@@ -1,5 +1,5 @@
 import react from "react"
-import { View, Text } from "react-native"
+import { View } from "react-native"
 import { FlatList } from "react-native-gesture-handler"
 import { useDispatch, useSelector } from "react-redux"
 import RecetteListElement from "./recetteListElementCompnent"

@@ -14,7 +14,7 @@ const RecipeDetails = ({route}) => {
         if (favedRecipes.filter(_recipe => _recipe.id == recipe.id).length > 0){
             return (
                 <Button 
-                    style="styles.unFavButton" 
+                    style={styles.unFavButton} 
                     title="Retirer des favoris"
                     onPress={() => dispatch(unfavRecipe(recipe.id))} 
                 />
@@ -23,27 +23,17 @@ const RecipeDetails = ({route}) => {
         else
             return (
                 <Button 
-                    style="styles.favButton" 
+                    style={styles.favButton}
                     title="Ajouter aux favoris"
                     onPress={() => dispatch(addRecipeToFaved(recipe))}
                 />
             )
     }
 
-    const displayProductionCompanies = () => {
-        let companiesJSX = [];
-        film.production_companies.forEach((company, index) => {
-          companiesJSX.push(
-            <ProductionCompanyItem key={index} companyData={company} />
-          );
-        });
-        return <View>{companiesJSX}</View>;
-      };
-
     const displayIngredients = () => {
         let ingredientsJSX = [];
         recipe.extendedIngredients.forEach((ingredient) => {
-            ingredientsJSX.push(<Text>{ingredient.original}</Text>)
+            ingredientsJSX.push(<Text key={ingredient.id}>{ingredient.original}</Text>)
         })
 
         return <View>{ingredientsJSX}</View>
@@ -52,7 +42,7 @@ const RecipeDetails = ({route}) => {
     const displayInstructions = () => {
         let instructions = [];
         recipe.analyzedInstructions[0]?.steps?.forEach((instruction) => {
-            instructions.push(<Text>{instruction.number}. {instruction.step}</Text>)
+            instructions.push(<Text key={instruction.number}>{instruction.number}. {instruction.step}</Text>)
         })
 
         return <View>{instructions}</View>
